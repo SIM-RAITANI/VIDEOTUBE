@@ -1,6 +1,6 @@
-import {ApiError} from "../utils/ApiError"
-import { userModel } from "../models/user.model";
-import { asyncHandler } from "../utils/asyncHandler";
+import {ApiError} from "../utils/ApiError.js"
+import { userModel } from "../models/user.model.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const isUserLoggedIn=asyncHandler(async (req,res,next)=>{
     try {
