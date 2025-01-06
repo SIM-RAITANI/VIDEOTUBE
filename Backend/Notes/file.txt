@@ -1,0 +1,40 @@
+multer
+cloudinary--service to store files
+creating multer as a middleware
+first file is tored in the local server using multer
+later it is stored in the server
+
+
+
+subscription model:
+
+
+
+//deleting file from cloudinary:
+
+#we usse public id to delete the file --> security reason
+#cloudinary.uploader.destroy() method is used to delete the file from cloudinary
+#we are storing the image url --- https://res.cloudinary.com/your_cloud_name/image/upload/v123456789/sample.jpg
+#here, sample is the public id which we want
+#hence we extract it via three steps
+1) Split from "/"
+
+[
+  'https:',
+  '',
+  'res.cloudinary.com',
+  'your_cloud_name',
+  'image',
+  'upload',
+  'v123456789',
+  'sample.jpg'
+]
+
+2) Obtain thye last part of array i.e "sample.jpg"
+
+'sample.jpg'
+
+
+3) Then split across "." and extract the 0th index i.e. "sample"
+
+'sample'

@@ -1,0 +1,2 @@
+Register user
+.some() method of javascript

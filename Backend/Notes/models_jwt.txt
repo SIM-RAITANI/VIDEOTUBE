@@ -1,0 +1,4 @@
+mongoose-aggregate-paginate:
+Pagination is the process of dividing a large set of data into smaller, manageable chunks or pages. Instead of showing all the data at once, it displays a limited number of items on each page. This makes it easier for users to find and navigate through the information, like flipping through pages in a book.
+
+We are using it to make custom pagination to display limited data from a large data sets
