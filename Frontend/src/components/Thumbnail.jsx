@@ -6,7 +6,7 @@ const Thumbnail = ({video}) => {
   return (
     <>
     <NavLink to={`/video/${video.id}`}>
-        <div className="group cursor-pointer">
+        <div className="group cursor-pointer h-fit">
             <div className="relative aspect-video rounded-lg overflow-hidden">
               <img
                 src={video.thumbnail}
