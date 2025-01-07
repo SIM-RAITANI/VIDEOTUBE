@@ -34,20 +34,20 @@ const Register = () => {
           <div className="flex-1">
             <label
               htmlFor="avatar"
-              class="flex items-center justify-center w-full  p-3 bg-gray-200 text-gray-700 rounded-lg cursor-pointer hover:bg-gray-300 transition"
+              className="flex items-center justify-center w-full  p-3 bg-gray-200 text-gray-700 rounded-lg cursor-pointer hover:bg-gray-300 transition"
             >
               Add Profile Picture
             </label>
-            <input type="file" id="avatar" class="hidden" accept="image/*" />
+            <input type="file" id="avatar" className="hidden" accept="image/*" />
           </div>
           <div className="flex-1">
             <label
               htmlFor="avatar"
-              class="flex items-center justify-center w-full  p-3 bg-gray-200 text-gray-700 rounded-lg cursor-pointer hover:bg-gray-300 transition"
+              className="flex items-center justify-center w-full  p-3 bg-gray-200 text-gray-700 rounded-lg cursor-pointer hover:bg-gray-300 transition"
             >
               Add Cover 
             </label>
-            <input type="file" id="avatar" class="hidden" accept="image/*" />
+            <input type="file" id="avatar" className="hidden" accept="image/*" />
           </div>
         </div>
 

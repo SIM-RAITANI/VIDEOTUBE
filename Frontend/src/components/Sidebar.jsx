@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useSidebarStore } from "../stores/sidebar";
+import { useNavigate } from "react-router-dom";
 const navItems = [
   { icon: Home, label: "Home", href: "/" },
   { icon: ThumbsUp, label: "Liked Videos", href: "/liked" },
@@ -22,8 +23,8 @@ const navItems = [
   { icon: HelpCircle, label: "Support", href: "/support" },
   { icon: Settings, label: "Settings", href: "/settings" },
 ];
-
 export default function Sidebar({ onClose }) {
+  const navigate = useNavigate();
   const { sidebarToggle} = useSidebarStore();
   return (
     <aside className={`w-60 border-r duration-300 bg-white min-h-[calc(100vh-4rem)] ${sidebarToggle? 'max-md:absolute max-md:z-10 px-4': 'max-md:w-0 max-md:absolute max-md:z-10'}`}>
@@ -41,8 +42,10 @@ export default function Sidebar({ onClose }) {
         sidebarToggle?
         <div className="md:hidden">
 
-            <button className="h-9 w-full px-4 mb-4 bg-neutral-200 rounded-md">Log in</button>
-            <button className=" h-9 w-full px-4 bg-black text-white rounded-md">Sign up</button>        
+            <button className="h-9 w-full px-4 mb-4 bg-neutral-200 rounded-md"
+            onClick={()=>navigate('/login')}>Log in</button>
+            <button className=" h-9 w-full px-4 bg-black text-white rounded-md"
+            onClick={()=>navigate('/register')}>Sign up</button>        
         </div>
         :<></>
       }
