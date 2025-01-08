@@ -8,9 +8,9 @@ import Sidebar from "./components/Sidebar";
 function App() {
   return (
     <>
-      <Navbar />
-      <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
-        <Sidebar />
+      {/* <Navbar /> */}
+      <div className="flex h-screen overflow-hidden">
+        {/* <Sidebar /> */}
         <div className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />

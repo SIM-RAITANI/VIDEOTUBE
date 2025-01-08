@@ -15,6 +15,8 @@ const generateAccessTokenAndRefreshToken = async (userId) => {
 
     return { accessToken, refreshToken };
   } catch (error) {
+    console.log(error.message);
+    
     throw new ApiError(500, "Something went wrong");
   }
 };
@@ -97,15 +99,16 @@ const loginUser = asyncHandler(async (req, res) => {
   //generate access and refresh token
   //send the res and set the cookie
 
-  const { email, username, password } = req.body;
+  const { email,  password } = req.body;
 
-  if (email === "" || username === "") {
+  if (email === "") {
     throw new ApiError(400, "username/email is required");
   }
 
   const user = await userModel.findOne({
-    $or: [{ email }, { username }],
+    $or: [{ email }, { username: email }],
   });
+  
   if (!user) {
     throw new ApiError(400, "User doesn't exists");
   }
