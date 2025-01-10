@@ -8,16 +8,13 @@ import Sidebar from "./components/Sidebar";
 function App() {
   return (
     <>
-      {/* <Navbar /> */}
-      <div className="flex h-screen overflow-hidden">
-        {/* <Sidebar /> */}
-        <div className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login/>} />
-          </Routes>
-        </div>
+      <Navbar />
+      <div className="h-[calc(100vh-4rem)] w-full">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
       </div>
     </>
   );
