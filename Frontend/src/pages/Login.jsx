@@ -1,41 +1,23 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { use } from "react";
-import useUserStore from "../stores/user.store.js";
 import axios from "axios";
+import useAuthStore from "../stores/auth.store.js";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const backendUrl = useUserStore((state) => state.backendUrl);
-  console.log(backendUrl);
+  const { login } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
     const userData = {
       email: email,
       password: password,
     };
-    try {
-      const { data } = await axios.post(`${backendUrl}/users/login`, userData);
-      console.log("user data after login request: ", data.success);
-      console.log(data.success);
-      
-      if (data.success) {
-        navigate("/");
-        console.log("User logged in successfully");
-      } else {
-        alert("Invalid username or password");
-      }
-
-      setEmail("");
-      setPassword("");
-    } catch (error) {
-      console.log(error.message);
-    }
+    login(userData, navigate);
   };
 
   return (
