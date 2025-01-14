@@ -12,7 +12,8 @@ const generateAccessTokenAndRefreshToken = async (userId) => {
 
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
-
+    console.log(accessToken, refreshToken);
+    
     return { accessToken, refreshToken };
   } catch (error) {
     console.log(error.message);
@@ -48,7 +49,7 @@ const registerUser = asyncHandler(async (req, res) => {
   console.log("all fine", req.files);
 
   const avatarPath = await req.files?.avatar[0]?.path;
-  console.log("avatar path", avatarPath);
+  // console.log("avatar path", avatarPath);
   let coverImagePath;
   if (
     req.files &&
@@ -65,6 +66,8 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const avatar = await uploadFile(avatarPath);
   const coverImage = await uploadFile(coverImagePath);
+  console.log(avatar, coverImage);
+  
 
   if (!avatar) {
     throw new ApiError(400, "Something went wrong!!");
@@ -110,11 +113,12 @@ const loginUser = asyncHandler(async (req, res) => {
   });
   
   if (!user) {
-    throw new ApiError(400, "User doesn't exists");
+    throw new ApiError(400, "User doesn't exist");
   }
   if (password === "") {
     throw new ApiError(400, "Password is required");
   }
+
 
   const passwordMatch = await user.isMatch(password);
 
@@ -122,12 +126,13 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Wrong credentials");
   }
 
-  const { accessToken, refreshToken } = generateAccessTokenAndRefreshToken(
+  const { accessToken, refreshToken } = await generateAccessTokenAndRefreshToken(
     user._id
   );
   const options = {
     httpOnly: true,
     secure: true,
+    sameSite: "None",
   };
 
   const loggedInUser = await userModel
@@ -136,7 +141,6 @@ const loginUser = asyncHandler(async (req, res) => {
 
   res
     .status(200)
-    .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
     .json(
       new ApiResponse(
@@ -144,7 +148,6 @@ const loginUser = asyncHandler(async (req, res) => {
         {
           user: loggedInUser,
           accessToken,
-          refreshToken,
         },
         "User logged in successfully"
       )

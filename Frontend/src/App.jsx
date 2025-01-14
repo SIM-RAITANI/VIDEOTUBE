@@ -5,7 +5,12 @@ import Navbar from "./components/Navbar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Sidebar from "./components/Sidebar";
+import { useEffect } from "react";
+import useAuthStore from "./stores/auth.store";
 function App() {
+  useEffect(()=>{
+    // useAuthStore.getState().refreshAccessToken();
+  },[])
   return (
     <>
       <Navbar />
